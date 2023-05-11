@@ -11,12 +11,21 @@ class Backup
         $this->db = $db;
     }
 
+    /**
+     * 
+     * 
+     * Generate a backup of the database schema.
+     *
+     *
+     *
+    */
+
     public function backup($fileName)
     {
         // Open the backup file for writing
         $file = fopen($fileName, 'w');
 
-        // Write the SQL code for each table to the backup file
+        // Retrieve a list of all the tables .Write the SQL code for each table to the backup file
         $tables = $this->db->listTables();
         foreach ($tables as $table) {
             $sql = $this->db->query('SELECT * FROM '.$table)->getResult('array');
